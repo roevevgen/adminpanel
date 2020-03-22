@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,13 +12,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin Admin',
-            'email' => 'admin@argon.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $data = [
+            [
+                'name' => 'Roev Evgen',
+                'email' => 'roevevgen7@gmail.com' ,
+                'password' => bcrypt(Str::random(16)),
+            ],
+            [
+                'name' => 'Author',
+                'email' => 'roevevgen@gmail.com' ,
+                'password' => bcrypt('panda123ira'),
+            ],
+        ];
+
+        Db::table('users')->insert($data);
     }
 }

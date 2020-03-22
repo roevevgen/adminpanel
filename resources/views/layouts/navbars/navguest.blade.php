@@ -27,7 +27,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('blog.posts.index') }}">
             <i class="ni ni-planet text-blue"></i> {{ __('Blog') }}
         </a>
     </li>

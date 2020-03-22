@@ -28,3 +28,25 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+//Route::resource('rest', 'RestTestController')->names('restTest');
+
+//группа маршрутов для блога
+Route::group(['namespace'=>'Blog','prefix'=>'blog'], function (){
+    Route::resource('posts','PostController')->names('blog.posts');
+});
+//Админка блога
+
+$groupData = [
+    'namespace' => 'Blog\Admin',
+    'prefix' => 'admin/blog'
+];
+
+Route::group($groupData, function () {
+//    BlogCategories
+    $methods = ['index', 'edit', 'update', 'store', 'create', 'show', 'destroy'];
+    Route::resource('categories', 'CategoryController')
+        ->only($methods)
+        ->names('blog.admin.categories');
+
+});
+
